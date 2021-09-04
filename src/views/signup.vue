@@ -11,9 +11,14 @@
        <div class="left">
          <h1>Welcome.</h1>
          <p>join us and get the perfect examination <br> experience.</p>
-         <form action="">
-           <input type="text" placeholder="Your Username"> <br>
-           <input type="text" placeholder="Password" style="margin-top: 22px;">
+
+
+         <form action="" @submit.prevent="handleSubmit">
+           <input type="text" v-model="username"  placeholder="Your Username"> <br>
+
+
+
+           <input type="text" v-model="password" placeholder="Password" style="margin-top: 22px;">
            <div class="btn">
              <div >
            <p style="margin">signup with</p>
@@ -23,8 +28,8 @@
              <img src="https://res.cloudinary.com/mindset/image/upload/v1630392688/entypo-social_linkedin-with-circle_bqww3u.png" alt="" style="width: 40px;height:40px; margin-left:-80px;">
            </div>
          </div>
-             <button disabled="disabled" class="two">
-               login
+             <button  class="two">
+               signup
            </button>
            </div>
          </form>
@@ -56,6 +61,42 @@
 
  
 </template>
+
+
+<script>
+import axios from 'axios'
+// import { log } from 'util';
+export default {
+  name: 'Login',
+  data() {
+    return {
+      username: '',
+
+      password: ''  
+    }
+  },
+  methods: {
+    async handleSubmit() {
+      
+      var strongRegex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})");
+      if( strongRegex.test(this.password) ) {
+
+        const response = await axios.post('https://safe-chamber-84179.herokuapp.com/opentest/api/signup', {
+        username: this.username,
+        password: this.password
+      });
+      console.log(response);
+      }
+      
+      
+
+
+    
+    }
+  }
+}
+</script>
+
 
 <style scoped>
 

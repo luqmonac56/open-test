@@ -1,26 +1,41 @@
 <template>
   <div class="app">
     <div class="top"> 
-      <img src="https://res.cloudinary.com/mindset/image/upload/v1630359624/logo_mhpqef.png" alt="">
-      <button>Register</button>
+      <img src="https://res.cloudinary.com/mindset/image/upload/v1630359624/logo_mhpqef.png" alt="" class="logo-img">
+      <button class="register-btn">Register</button>
     </div>
 
      <section class="content">
     
 
        <div class="left">
-         <h1>Welcome.</h1>
-         <p>login to your account</p>
-         <form action="">
-           <input type="text" placeholder="Your Username"> <br>
-           <input type="text" placeholder="Password" style="margin-top: 22px;">
+         <h1 class="welcome">Welcome.</h1>
+         <p class="login-text">login to your account</p>
+
+
+
+
+         <form action="" @submit.prevent="handleSubmit">
+
+             <div>
+             {{error}}
+             </div>
+           <input type="text" class="form-control" v-model="username" placeholder="Your Username"> <br>
+
+
+           <input type="text" class="form-control" v-model="password" placeholder="Password" style="margin-top: 22px;">
            <div class="btn">
+
              <button class="one">Forgot password?</button>
-             <button disabled="disabled" class="two">
+
+             <button class="two">
                login
            </button>
            </div>
          </form>
+
+
+
          <div style="margin-top:40px;">
            <p style="margin">login with</p>
            <div style="display: flex; margin-top:-30px; margin-left:-40px;">
@@ -37,9 +52,9 @@
 
      <footer class="foot">
        <div class="foot1">
-         <div style="display: flex;">
+         <div class="foot2">
            <img src="https://res.cloudinary.com/mindset/image/upload/v1630390831/Vector_tktcvx.png" alt="">
-           <p style="margin-left:-100px;">Copyright Demlinks 2021</p>
+           <p class="copy">Copyright Demlinks 2021</p>
          </div>
          <div class="private">
            <p>Privacy policy</p>
@@ -54,20 +69,59 @@
      </footer>
   </div>
 
- 
+
 </template>
+
+
+<script>
+    import axios from 'axios'
+    // import { log } from 'util';
+    export default {
+      name: 'Login',
+      data() {
+        return {
+          username: '',
+
+          password: ''  
+        }
+      },
+      methods: {
+        async handleSubmit() {
+          
+          var strongRegex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})");
+          if( strongRegex.test(this.password) ) {
+
+            const response = await axios.post('https://safe-chamber-84179.herokuapp.com/opentest/api/login', {
+            username: this.username,
+            password: this.password
+          });
+          console.log(response);
+          }
+          
+          
+
+
+        
+        }
+      }
+}
+</script>
+
 
 <style scoped>
 
 
 
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 
   *{
     padding-left: 40px;
     padding-right: 70px;
     margin: 0;
+  }
+  .copy{
+    margin-left: -100px;
   }
   .app{
     background-color: #f5f5f5;
@@ -197,9 +251,11 @@
   .foot1{
     display: flex;
     position: absolute;
-    left: 0;
-    
+    left: 0; 
 
+  }
+  .foot2{
+    display: flex;
   }
 
   .foot1 p{
@@ -219,6 +275,75 @@
   .p2{
     margin-left: -50px;
   }
+
+@media screen and (max-width: 480px) {
+
+  .top{
+    display: flex;
+    flex-direction: row;
+  }
+  .right{
+  display: none;
+  }
+  .app{
+    background-color: #f5f5f5;
+    height: 150vh;
+    }
+    *{
+    padding-left: 10px;
+    margin: 0;
+  }
+  
+  .logo-img{
+  width: 150px;
+  height: auto;
+  
+  }
+    .left{
+
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+
+  }
+  .login-text{
+  width: 100%;
+  
+  }
+  .cycle{
+    display: none;
+  }
+  .foot{
+    display: flex;
+    flex-direction: column;
+  }
+  .foot1{
+    display: flex;
+    flex-direction: column; 
+
+  }
+  input{
+    width: 230px;
+    margin-left: -6px;
+  }
+  .one{
+    margin-left: 170px;
+    font-size: 16px;
+  }
+  .foot2{
+    display: flex;
+    margin-top: 60px;
+    
+  }
+   .private{
+    display: flex;
+    margin-left: -10px;
+    margin-top: 20px;
+  }
+  .copy{
+    margin-left: -70px;
+  }
+}
   
 </style>
 

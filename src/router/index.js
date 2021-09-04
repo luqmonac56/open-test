@@ -1,12 +1,16 @@
+/* eslint-disable no-undef */
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+// import dashboard from '../views/Dashboard'
 
 const routes = [
+
   {
     path: '/',
     name: 'Home',
     component: Home
   },
+
   {
     path: '/login',
     name: 'Login',
@@ -18,7 +22,15 @@ const routes = [
     name: 'Signup',
    
     component: () => import(/* webpackChunkName: "about" */ '../views/signup.vue')
-  }
+  },
+  {
+    path: '/daniel',
+    name: 'Daniel',
+   
+    component: () => import(/* webpackChunkName: "about" */ '../views/daniel.vue')
+  },
+  
+ 
 ]
 
 const router = createRouter({
