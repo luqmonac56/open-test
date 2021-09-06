@@ -203,14 +203,14 @@
   }
 
   .foot1 p{
-    
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 13px;
-      line-height: 16px;
-      color: #AFAFAF;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: #AFAFAF;
    }
+   
   .private{
     display: flex;
     margin-left: -130px;
