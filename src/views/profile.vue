@@ -1,6 +1,6 @@
 <template >
   <main>
-    <div class=" bg-indigo-50 ">
+    <div class=" navigation">
     <div class=" md:w-full flex justify-between items-center shadow-lg p-3">
       <img src="@/assets/opentestLogo.png" alt="logo">
       <form  class=" hidden md:block">
@@ -18,7 +18,7 @@
   </div>
 
  <div class="flex">
-    <aside class=" hidden md:flex flex-col justify-around items-center shadow-xl max-w-sm md:w-3/12 bg-gray-50 text-gray-500">
+    <aside class=" hidden md:flex flex-col justify-around items-center shadow-xl max-w-sm md:w-3/12 text-gray-500">
      <div >
         <ul>
         <li> <a href="#">Dashboard</a> </li>
@@ -132,7 +132,10 @@ export default {
 
 main{
     height: 100%;
+}
 
+.navigation{
+  background: #f5f5f5;
 }
 
 input{
@@ -141,6 +144,7 @@ input{
 }
 
 aside{
+  background: #f5f5f5;
   flex: 1;
   height: 88vh;
   box-shadow: 10px 0 5px -5px rgb(14, 12, 12);
