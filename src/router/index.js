@@ -1,13 +1,18 @@
+/* eslint-disable no-undef */
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+
 import profile from '../views/profile.vue'
+// import dashboard from '../views/Dashboard'
 
 const routes = [
+
   {
     path: '/',
     name: 'Home',
     component: Home
   },
+
   {
     path: '/login',
     name: 'Login',
@@ -21,10 +26,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/signup.vue')
   },
   {
+
     path: '/profile',
     name: 'profile',
     component: profile
   }
+
+    path: '/daniel',
+    name: 'Daniel',
+   
+    component: () => import(/* webpackChunkName: "about" */ '../views/daniel.vue')
+  },
+  
+
 ]
 
 const router = createRouter({
